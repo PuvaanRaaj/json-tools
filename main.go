@@ -19,6 +19,11 @@ func main() {
     router := gin.Default()
 
     router.Static("/static", "./static")
+
+    router.GET("/", func(c *gin.Context) {
+        c.Redirect(http.StatusFound, "/beautify")
+    })
+
     router.GET("/beautify", func(c *gin.Context) {
         c.File("./static/beautify.html")
     })
