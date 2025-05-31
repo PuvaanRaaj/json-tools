@@ -1,6 +1,8 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JSON Beautifier</title>
         <style>
             * {
@@ -9,9 +11,10 @@
             html,
             body {
                 margin: 0;
+                padding: 0;
                 height: 100%;
                 font-family: "Segoe UI", sans-serif;
-                background: #f5f7fa;
+                background: #f9fafb;
             }
 
             nav {
@@ -45,17 +48,9 @@
                 background-color: #3b82f6;
             }
 
-            h1 {
-                margin: 0;
-                text-align: center;
-                padding: 1em;
-                background: #4f46e5;
-                color: white;
-            }
-
-            form {
+            main {
                 display: flex;
-                height: calc(100% - 160px);
+                height: calc(100vh - 64px); /* subtract navbar height */
                 padding: 1em;
                 gap: 1em;
             }
@@ -64,6 +59,7 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
+                min-height: 0;
             }
 
             label {
@@ -81,11 +77,12 @@
                 border-radius: 8px;
                 resize: none;
                 background: white;
+                overflow: auto;
+                min-height: 0;
             }
 
             pre {
                 background: #f3f4f6;
-                overflow: auto;
             }
 
             .btn-wrap {
@@ -107,7 +104,7 @@
             }
 
             @media (max-width: 768px) {
-                form {
+                main {
                     flex-direction: column;
                 }
             }
@@ -122,8 +119,8 @@
             </div>
         </nav>
 
-        <form id="beautify-form">
-            <div class="panel">
+        <main>
+            <form id="beautify-form" class="panel">
                 <label for="minified">Minified JSON:</label>
                 <textarea
                     id="minified"
@@ -132,12 +129,13 @@
                 <div class="btn-wrap">
                     <button type="submit">Beautify</button>
                 </div>
-            </div>
+            </form>
+
             <div class="panel">
                 <label for="beautified-result">Beautified JSON:</label>
                 <pre id="beautified-result"></pre>
             </div>
-        </form>
+        </main>
 
         <script>
             document.getElementById("beautify-form").onsubmit = async function (
